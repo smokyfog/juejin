@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 
-Vue.config.productionTip = false
 import {
   Pagination,
   Dialog,
@@ -63,7 +62,6 @@ import {
   CollapseItem,
   Cascader,
   ColorPicker,
-  // Transfer,
   Container,
   Header,
   Aside,
@@ -147,6 +145,10 @@ Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
+
+
+Vue.config.productionTip = false
+
 new Vue({
   router,
   store,
