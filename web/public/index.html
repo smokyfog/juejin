@@ -2,9 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="./css//font-awesome.min.css">
     <title>web</title>
+    <script>
+        var setBaseFontSize = function(){
+            var deviceWidth = document.documentElement.clientWidth;
+            if(deviceWidth > 750) deviceWidth = 750;
+            document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+        }
+        setBaseFontSize()
+        var tid;
+        window.addEventListener('resize', function() {
+            clearTimeout(tid);
+            tid = setTimeout(setBaseFontSize, 300);
+        }, false);
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted) {
+                clearTimeout(tid);
+                tid = setTimeout(setBaseFontSize, 300);
+            };
+        }, false);
+        
+    </script>
   </head>
   <body>
     <noscript>
@@ -14,86 +35,3 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
-<script>
-/**
- * @DESCRIPTION 移动端页面适配解决方案 v1.0
- * @AUTHOR      Night
- * @DATE        2018年08月01日
- */
- (function(window, document){
-    var docEle = document.documentElement,
-        dpr    = window.devicePixelRatio || 1,
-        scale  = 1 / dpr;
-    
-    var fontSizeRadio = 1, //手机字体正常比例
-        isLandscape   = false;//是否横屏
-    
-    ///////////////////////// viewport start //////////////////////////////////
-    
-    //设置页面缩放比例并禁止用户手动缩放
-    document.getElementsByName('viewport')[0].setAttribute('content','width=device-width,initial-scale='+scale+',maximum-scale='+scale+',minimum-scale='+scale+',user-scalable=no');
-    
-	///////////////////////// viewport end //////////////////////////////////
-    
-    //横屏状态检测
-    if (window.orientation === 90 || window.orientation === -90) {
-        isLandscape = true;
-    };
-
-    ///////////////////// system font-size check start //////////////////////
-    
-    //试探字体大小，用于检测系统字体是否正常
-    var setFz = '16px';
-
-    //给head增加一个隐藏元素
-    var headEle = document.getElementsByTagName('head')[0],
-        spanEle = document.createElement('span');
-        spanEle.style.fontSize = setFz;
-        spanEle.style.display = 'none';
-        headEle.appendChild(spanEle);
-
-    //判断元素真实的字体大小是否setFz
-    //如果不相等则获取真实的字体换算比例
-    var realFz = getComputedStyle(headEle).getPropertyValue('font-size');
-    
-    if(setFz !== 'realFz'){
-        //去掉单位px，下面要参与计算
-        setFz = parseFloat(setFz);
-        realFz = parseFloat(realFz);
-        console.log("realFz  "+ realFz)
-        console.log("setFz  "+setFz)
-        //获取字体换算比例
-        fontSizeRadio = setFz / realFz;
-    };
-    
-    ///////////////////// system font-size check end //////////////////////
-    
-    var setBaseFontSize = function(){
-        var deviceWidth = docEle.clientWidth,
-            deviceHeight= docEle.clientHeight;
-        
-        if(isLandscape){
-            deviceWidth = deviceHeight;
-        };
-        
-        docEle.style.fontSize = setFz * fontSizeRadio + 'px';
-    };
-    setBaseFontSize();
-    
-    //页面发生变化时重置font-size
-    //防止多个事件重复执行，增加延迟300ms操作(防抖)
-    var tid;
-    window.addEventListener('resize', function() {
-        clearTimeout(tid);
-        tid = setTimeout(setBaseFontSize, 300);
-    }, false);
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            clearTimeout(tid);
-            tid = setTimeout(setBaseFontSize, 300);
-        };
-    }, false);
-    
-})(window, document);
-
-</script>

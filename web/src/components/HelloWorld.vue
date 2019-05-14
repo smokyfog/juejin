@@ -41,7 +41,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-$base : 750;
+$sc : 750;
+@function cal($num) {
+  @return ($num/$sc) * 1rem;
+}
+
+.logo{
+	width : cal(180); 
+}
+
 h3 {
   margin: 40px 0 0;
 }

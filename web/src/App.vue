@@ -1,15 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
-    </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view/>
   </div>
 </template>
 
@@ -24,11 +15,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
-$base : 750;
-// body{
-//   font-size: 2rem/$base
-// }
+<style  lang="scss">
+$sc : 50;
+@function cal($num) {
+  @return ($num/$sc) * 1rem;
+}
+body{
+  font-size: 16px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,21 +31,23 @@ $base : 750;
   color: #2c3e50;
   margin-top: 60px;
 }
-
+img{
+  width: cal(200)
+}
 //设计稿尺寸大小，假如设计稿宽度750
 
 // @function calc($val){
 //     @return $val / $baseDesignWidth;
 // }
 
-@function calc($val) {
-  @return $val / $baseDesignWidth;
-}
+// @function calc($val) {
+//   @return $val / $baseDesignWidth;
+// }
 
 
 //适配元素采用rem，假如设计稿中元素宽度180
 .logo{
-	width : calc(180rem);
+	// width : calc(180rem);
 }
 
 //边框采用px，假如设计稿边框宽度1px
