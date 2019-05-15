@@ -52,7 +52,7 @@ module.exports = {
         // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
         proxy: {
             '/api': {
-                target: '<url>',
+                target: 'https://web-api.juejin.im',
                 ws: true,
                 changeOrigin: true
             },
