@@ -1,22 +1,17 @@
 var express = require("express");
 var router = express.Router();
-
+const JueJinUser = require('../mongodb/schema')
 //使用router配置子路由  admin模块下的路由
 
 router.get("/", (req, res) => {
     res.send("admin index")
 })
 
-router.get("/login", (req, res) => {
-    res.send("admin login")
-})
-
-router.get("/register", (req, res) => {
-    res.send("admin register")
-})
-
-router.get("/timeline/recommended", (req, res) => {
-    console.log(res)
+router.get("/recommended", (req, res) => {
+    console.log(req.query)
+    JueJinUser.findOne({}, (err, doc) => {
+        console.log(doc)
+    })
     res.send("admin register")
 })
 
