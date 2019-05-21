@@ -8,11 +8,9 @@ router.get("/", (req, res) => {
 })
 
 router.get("/recommended", (req, res) => {
-    console.log(req.query)
-    JueJinUser.findOne({}, (err, doc) => {
-        console.log(doc)
+    JueJinUser.find({}, (err, doc) => {
+        res.json(doc)
     })
-    res.send("admin register")
 })
 
 module.exports = router;
