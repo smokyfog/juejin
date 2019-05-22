@@ -4,7 +4,7 @@ const JueJinUser = require('../mongodb/schema')
 //使用router配置子路由  admin模块下的路由
 
 router.get("/", (req, res) => {
-    res.send("admin index")
+    res.redirect("/recommended")
 })
 
 router.get("/recommended", (req, res) => {
