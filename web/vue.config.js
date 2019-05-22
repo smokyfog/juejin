@@ -56,9 +56,17 @@ module.exports = {
                 ws: true,
                 changeOrigin: true
             },
+            "/node":{
+                target:"http://localhost:8000",
+                changeOrigin:true,
+                pathRewrite:{
+                    "^/node":"/"
+                }
+            },
             '/foo': {
                 target: '<other_url>'
             }
         },  // 配置多个代理
+        
     }
 }

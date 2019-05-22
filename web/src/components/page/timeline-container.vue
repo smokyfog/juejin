@@ -15,15 +15,31 @@
                     </ul>
                 </nav>
             </div>
-            <div class="entry-list">
-
-            </div>
+            <ListDetail :list="list" />
         </div>
     </div>
 </template>
 
 <script>
+import ListDetail from "./list_detail";
+import { constants } from 'fs';
 export default {
+    
+    data(){
+       return {
+           list:[]
+       }
+    },
+    components:{
+  		ListDetail
+    },
+    created(){
+        this.$http.get("/node/timeline/recommended").then((data)=>{
+            console.log(data.data)
+            this.list = data.data
+        })
+        
+    },
     
 }
 </script>
